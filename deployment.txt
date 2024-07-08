@@ -1,0 +1,23 @@
+Deployed on PythonAnywhere
+
+Had some issues with library installation so did the following installs from bash
+    pip install email_validator
+    pip install Flask-Migrate (for db migration)
+
+Made a virtual environment in PythonAnywhere using following commands 
+    mkvirtualenv myflaskenv 
+
+Database migration required as User and Item models were not made
+Used following commands from bash (terminal) in PythonAnywhere environment:
+    flask db init
+    flask db migrate -m "Initial migration."
+    flask db upgrade
+
+In the file structure we can modify the python .py code files to apply changes appropriately then click Reload 
+Use the bash (terminal) to add items using the following code:
+    from market import db, app
+    from market.models import Item
+    item = Item(name='Dell XPS',price=999,barcode='829292929292',description='alkdfjlakdfjlkasdjfads')
+    with app.app_context():
+        db.session.add(item)
+        db.session.commit()
